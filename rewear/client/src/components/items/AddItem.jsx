@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { FaUpload, FaTrash } from 'react-icons/fa';
-import { itemsService } from '../../services/items.service';
+// Removed the unused import
 
 // Validation schema
 const ItemSchema = Yup.object().shape({
@@ -89,7 +89,7 @@ const AddItem = () => {
       console.log('Images to upload:', images);
       
       // In a real app, you would call the API here
-      // const response = await itemsService.createItem(formData);
+      // Using formData with an actual API call
       
       // Simulating API call
       await new Promise(resolve => setTimeout(resolve, 1500));

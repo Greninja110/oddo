@@ -11,7 +11,6 @@ const AdminPanel = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
   const [itemsPerPage] = useState(10);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('all');
@@ -47,7 +46,6 @@ const AdminPanel = () => {
           
           setUsers(mockUsers);
           setItems(mockItems);
-          setTotalPages(Math.ceil(mockUsers.length / itemsPerPage));
           setLoading(false);
         }, 1000);
       } catch (err) {
@@ -139,6 +137,10 @@ const AdminPanel = () => {
     const endIndex = startIndex + itemsPerPage;
     return data.slice(startIndex, endIndex);
   };
+
+  // Calculate total pages for pagination
+  const userTotalPages = Math.ceil(filteredUsers.length / itemsPerPage);
+  const itemTotalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
   if (loading) return <Loader />;
   if (error) return <div className="text-center text-danger my-5">{error}</div>;
@@ -279,7 +281,7 @@ const AdminPanel = () => {
                     
                     <Pagination
                       currentPage={currentPage}
-                      totalPages={Math.ceil(filteredUsers.length / itemsPerPage)}
+                      totalPages={userTotalPages}
                       onPageChange={handlePageChange}
                     />
                   </Tab.Pane>
@@ -386,7 +388,7 @@ const AdminPanel = () => {
                     
                     <Pagination
                       currentPage={currentPage}
-                      totalPages={Math.ceil(filteredItems.length / itemsPerPage)}
+                      totalPages={itemTotalPages}
                       onPageChange={handlePageChange}
                     />
                   </Tab.Pane>

@@ -91,9 +91,6 @@ const HomePage = () => {
                 <Link to="/items/new">
                   <Button variant="success">List an Item</Button>
                 </Link>
-                <Link to="/swaps">
-                  <Button variant="outline-primary">Start Swapping</Button>
-                </Link>
               </div>
             </div>
           </Col>
@@ -149,12 +146,9 @@ const HomePage = () => {
               <Card className="category-card text-center h-100">
                 <Card.Body>
                   <Card.Title>{category.name}</Card.Title>
-                  <Button variant="link" disabled>
-                    View Items
-                  </Button>
-                  <small className="d-block text-muted">
-                    (Coming in next phase)
-                  </small>
+                  <Link to={`/items?category=${category.id}`}>
+                    <Button variant="link">View Items</Button>
+                  </Link>
                 </Card.Body>
               </Card>
             </Col>
