@@ -19,6 +19,7 @@ services:
       - REACT_APP_API_URL=http://localhost:5000/api
 
   # Backend Python Flask app
+  # Find the server service section and update the command:
   server:
     build:
       context: ../server
@@ -35,9 +36,12 @@ services:
       - rewear-network
     environment:
       - FLASK_ENV=development
-      - DATABASE_URL=mysql://rewear:rewear_password@db/rewear
+      - DATABASE_URL=mysql+pymysql://rewear:rewear_password@db:3306/rewear
       - JWT_SECRET_KEY=your_jwt_secret_key_here
       - SECRET_KEY=your_app_secret_key_here
+      - SQLALCHEMY_TRACK_MODIFICATIONS=False
+    # Run initialization script first, then start the app
+    command: sh -c "python init_db.py && python app.py"
 
   # MySQL Database
   db:

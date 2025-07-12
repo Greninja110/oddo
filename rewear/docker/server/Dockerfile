@@ -18,6 +18,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Install additional dependencies
 RUN pip install --no-cache-dir eventlet>=0.24.1
 
+RUN pip install --no-cache-dir pymysql cryptography
+
 # Copy the rest of the application
 COPY . .
 
