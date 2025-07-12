@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS items (
     description TEXT NOT NULL,
     category VARCHAR(50) NOT NULL,
     size VARCHAR(20) NOT NULL,
-    condition VARCHAR(20) NOT NULL,
+    `condition` VARCHAR(20) NOT NULL,
     tags VARCHAR(255),
     status VARCHAR(20) DEFAULT 'pending',
     is_featured BOOLEAN DEFAULT FALSE,

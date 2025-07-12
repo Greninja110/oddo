@@ -7,6 +7,7 @@ from flask_jwt_extended import (
 )
 from models.user import User
 import logging
+from functools import wraps
 
 logger = logging.getLogger(__name__)
 
@@ -96,8 +97,14 @@ def refresh_token():
             'message': 'An error occurred during token refresh'
         }), 500
 
+# In rewear/server/auth/jwt_handler.py
+# Find the admin_required decorator function and replace it with this:
+
+from functools import wraps
+
 def admin_required(fn):
     """Decorator to check if user is admin"""
+    @wraps(fn)  # Add this line to preserve the original function's metadata
     @jwt_required()
     def wrapper(*args, **kwargs):
         current_user_id = get_jwt_identity()
